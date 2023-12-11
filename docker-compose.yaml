@@ -1,0 +1,17 @@
+version: '3'
+services:
+  jupyter:
+    build:
+      context: .
+      dockerfile: spark-notebook.Dockerfile
+    #image: quay.io/jupyter/minimal-notebook:latest
+    ports:
+      - "8888:8888"
+    networks:
+      - spark_network
+    volumes:
+      - ./data:/app  # Adjust this based on your Jupyter notebook files
+
+networks:
+  spark_network:
+    driver: bridge
